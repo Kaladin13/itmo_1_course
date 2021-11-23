@@ -1,0 +1,16 @@
+<schedule>
+	<day>Среда</day>
+	<lessons>
+		<lesson>
+			<time>13:30-15:00</time>
+			<week>чётная неделя</week>
+			<room>
+				<num>285 ауд.</num>
+				<place>Кронверкский пр., д.49, лит.А</place>
+			</room>
+			<format>Очно - дистанционный</format>
+			<subject>Дискретная математика(Лек)</subject>
+			<teacher>Поляков Владимир Иванович</teacher>
+		</lesson>
+	</lessons>
+</schedule>	
