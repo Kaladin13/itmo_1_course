@@ -11,6 +11,7 @@ public class Character {
 
     public void setCurrentAction(CharacterActions currentAction) {
         this.currentAction = currentAction;
+        System.out.println(name +  " появился в истории и сейчас занят " + currentAction);
     }
 
     public void setOnPlanet(PlanetNames onPlanet) {

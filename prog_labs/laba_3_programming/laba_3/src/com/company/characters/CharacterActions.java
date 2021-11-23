@@ -4,5 +4,5 @@ public enum CharacterActions {
     READ,
     WRITE,
     DRAW,
-    TRAVEL
+    TRAVEL;
 }

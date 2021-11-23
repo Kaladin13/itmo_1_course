@@ -14,6 +14,7 @@ public class Sun extends Planet {
     }
 
     public void produceLight(Planet planet){
+        System.out.println(planetName + " отбрасывает свет на " + planet.planetName);
         planet.illuminationLevel = producedLight;
     }
 

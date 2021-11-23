@@ -15,6 +15,12 @@ public abstract class Planet implements LightReflection {
     }
 
     @Override
+    public void reflectLight(Planet planet) {
+        planet.illuminationLevel = illuminationLevel * reflectionRatio;
+        System.out.println(planetName + " отбрасывает свет на " + planet.planetName);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || this.getClass() != obj.getClass()) return false;
