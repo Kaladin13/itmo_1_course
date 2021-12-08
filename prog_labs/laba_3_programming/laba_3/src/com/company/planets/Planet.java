@@ -1,46 +1,26 @@
 package com.company.planets;
 
-import com.company.characters.Character;
+public class Planet extends SpaceObject implements LightReflection{
 
-import java.util.Objects;
+    private Double reflectionRatio;
 
-public abstract class Planet implements LightReflection {
-    protected Double illuminationLevel;
-    protected Double reflectionRatio;
-    protected PlanetNames planetName;
-
-    public Planet(Double reflectionRatio, PlanetNames planetName) {
+    public Planet(PlanetNames planetName, Double illuminationLevel, Double reflectionRatio) {
+        super(planetName, illuminationLevel);
         this.reflectionRatio = reflectionRatio;
-        this.planetName = planetName;
+    }
+
+
+    public Double getReflectionRatio() {
+        return reflectionRatio;
+    }
+
+    public void setReflectionRatio(Double reflectionRatio) {
+        this.reflectionRatio = reflectionRatio;
     }
 
     @Override
-    public void reflectLight(Planet planet) {
-        planet.illuminationLevel = illuminationLevel * reflectionRatio;
-        System.out.println(planetName + " отбрасывает свет на " + planet.planetName);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || this.getClass() != obj.getClass()) return false;
-        Planet planet = (Planet) obj;
-        return Objects.equals(planet.illuminationLevel, illuminationLevel)
-                && Objects.equals(reflectionRatio,planet.reflectionRatio)
-                && planetName.equals(planet.planetName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(illuminationLevel,reflectionRatio,planetName);
-    }
-
-    @Override
-    public String toString() {
-        return "Planet{" +
-                "illuminationLevel=" + illuminationLevel +
-                ", reflectionRatio=" + reflectionRatio +
-                ", planetName=" + planetName +
-                '}';
+    public void reflectLight(SpaceObject planet) {
+        System.out.println("Planet " + this.planetName + " reflects light on " + planet.planetName);
+        planet.setIlluminationLevel(this.getIlluminationLevel() * this.reflectionRatio);
     }
 }

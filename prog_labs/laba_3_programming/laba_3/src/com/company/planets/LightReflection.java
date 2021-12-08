@@ -1,5 +1,5 @@
 package com.company.planets;
 
 public interface LightReflection {
-    void reflectLight(Planet planet);
+    void reflectLight(SpaceObject planet);
 }
