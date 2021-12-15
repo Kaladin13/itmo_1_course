@@ -1,0 +1,18 @@
+
+ASM
+-------
+START:
+mov eax, word [0x10]
+mov rdi, word [0x11]
+mul rdi
+
+
+БЭВМ
+-------
+ORG 	0x10
+WORD	0xA014
+WORD	0x2015
+WORD	0xE010
+WORD	0X0100
+WORD	0XDEAD
+WORD	0XBEEF 

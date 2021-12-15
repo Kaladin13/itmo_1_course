@@ -2,7 +2,7 @@ package com.company.planets;
 
 import java.util.Objects;
 
-public class YellowDwarfStar extends SpaceObject{
+public class YellowDwarfStar extends SpaceObject {
 
     private final Double producedLight;
 
@@ -11,7 +11,7 @@ public class YellowDwarfStar extends SpaceObject{
         this.producedLight = producedLight;
     }
 
-    public void produceLight(SpaceObject planet){
+    public void produceLight(SpaceObject planet) {
         System.out.println("Yellow Dwarf " + planetName + " produced light on " + planet.planetName);
         planet.setIlluminationLevel(producedLight);
     }

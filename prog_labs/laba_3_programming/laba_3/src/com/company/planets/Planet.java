@@ -1,5 +1,6 @@
 package com.company.planets;
 
+
 public class Planet extends SpaceObject implements LightReflection{
 
     private Double reflectionRatio;
