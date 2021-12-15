@@ -19,12 +19,17 @@ public class Main {
             person.setOnPlanet(PlanetNames.MOON);
         }
 
-        Sun sun = new Sun(0.0,PlanetNames.SUN,1000.0);
-        Earth earth = new Earth(90.0, PlanetNames.EARTH);
-        Moon moon = new Moon(1.0, PlanetNames.MOON);
-
-        sun.produceLight(earth);
-        earth.reflectLight(moon);
-        moon.activities();
+        Planet moon = new Planet(PlanetNames.MOON, 1.0, 1.0);
+        Planet earth = new Planet(PlanetNames.EARTH, 1.0, 90.0);
+        System.out.println("Planet " + earth.getPlanetName() + " reflects light in "
+                + earth.getReflectionRatio()/ moon.getReflectionRatio()
+                + " more times than " + moon.getPlanetName());
+        YellowDwarfStar sun = new YellowDwarfStar(PlanetNames.SUN, 100.0, 100.0);
+        sun.produceLight(moon);
+        moon.reflectLight(earth);
+        System.out.println("При освящении = " + moon.getIlluminationLevel() + " доступны такие развлечения как " );
+        for (Object current : CharacterActions.values()) {
+            System.out.println(current);
+        }
     }
 }

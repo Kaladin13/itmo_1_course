@@ -12,5 +12,16 @@
 			<subject>Дискретная математика(Лек)</subject>
 			<teacher>Поляков Владимир Иванович</teacher>
 		</lesson>
+		<lesson>
+			<time>13:37-15:37</time>
+			<week>нечётная неделя</week>
+			<room>
+				<num>239 ауд.</num>
+				<place>Кронверкский пр., д.49, лит.А</place>
+			</room>
+			<format>Очно - дистанционный</format>
+			<subject>Дискретная математика(Лек)</subject>
+			<teacher>Балакшин</teacher>
+		</lesson>
 	</lessons>
 </schedule>	
