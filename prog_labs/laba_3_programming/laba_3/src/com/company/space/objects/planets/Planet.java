@@ -1,7 +1,9 @@
-package com.company.planets;
+package com.company.space.planets;
 
 
-public class Planet extends SpaceObject implements LightReflection{
+import com.company.space.events.LightReflection;
+
+public class Planet extends SpaceObject implements LightReflection {
 
     private Double reflectionRatio;
 
