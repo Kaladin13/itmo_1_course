@@ -1,4 +1,4 @@
-package com.company.planets;
+package com.company.space.objects.planets;
 
 import java.util.Objects;
 
