@@ -14,7 +14,8 @@ import com.company.space.objects.stars.YellowDwarfStar;
 public class Main {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Throwable {
+
 
         Character[] backTravellers = new Character[4];
         backTravellers[0] = new Character("Znaika");
@@ -57,8 +58,10 @@ public class Main {
             backTravellers[0].countStars();
         }
         catch (CouldntCountException e) {
+            System.out.println(e.getCause().getMessage());
             System.out.println(e.getMessage());
         }
+
 
         GlowingStar glowingStars = new GlowingStar(SpaceObjectsNames.COUNTLESS_STARS, 1.0);
         glowingStars.sparkle(GlowingColours.WHITE);

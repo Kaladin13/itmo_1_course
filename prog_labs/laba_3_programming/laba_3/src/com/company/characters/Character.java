@@ -19,8 +19,8 @@ public class Character {
         this.onPlanet = onPlanet;
     }
 
-    public void countStars() throws CouldntCountException {
-        throw  new CouldntCountException("There is an uncountable amount of stars in the sky");
+    public void countStars() throws Throwable {
+        throw  new CouldntCountException(new Exception("actual cause"));
     }
 
     public String getName() {
