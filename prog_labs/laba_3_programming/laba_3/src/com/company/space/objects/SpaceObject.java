@@ -1,18 +1,20 @@
-package com.company.space.objects.planets;
+package com.company.space.objects;
+
+import com.company.space.objects.planets.SpaceObjectsNames;
 
 import java.util.Objects;
 
 public abstract class SpaceObject {
 
-    protected PlanetNames planetName;
+    protected SpaceObjectsNames planetName;
     private Double illuminationLevel;
 
-    public SpaceObject(PlanetNames planetName, Double illuminationLevel) {
+    public SpaceObject(SpaceObjectsNames planetName, Double illuminationLevel) {
         this.planetName = planetName;
         this.illuminationLevel = illuminationLevel;
     }
 
-    public PlanetNames getPlanetName() {
+    public SpaceObjectsNames getPlanetName() {
         return planetName;
     }
 

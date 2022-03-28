@@ -1,7 +1,8 @@
 package com.company.space.objects.planets;
 
-public enum PlanetNames {
+public enum SpaceObjectsNames {
     EARTH,
     MOON,
-    SUN
+    SUN,
+    COUNTLESS_STARS
 }
