@@ -1,2 +1,8 @@
-package com.company.space.events;public interface ViewPlanet {
+package com.company.space.events;
+
+import com.company.space.objects.SpaceObject;
+
+@FunctionalInterface
+public interface ViewPlanet {
+    String getPlanetView(SpaceObject spaceObject);
 }

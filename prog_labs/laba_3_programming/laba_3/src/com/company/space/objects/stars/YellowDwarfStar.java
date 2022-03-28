@@ -1,4 +1,8 @@
-package com.company.space.planets;
+package com.company.space.objects.stars;
+
+import com.company.space.events.ViewPlanet;
+import com.company.space.objects.planets.SpaceObjectsNames;
+import com.company.space.objects.SpaceObject;
 
 import java.util.Objects;
 
@@ -6,13 +10,17 @@ public class YellowDwarfStar extends SpaceObject {
 
     private final Double producedLight;
 
-    public YellowDwarfStar(PlanetNames planetName, Double illuminationLevel, Double producedLight) {
+    public YellowDwarfStar(SpaceObjectsNames planetName, Double illuminationLevel, Double producedLight) {
         super(planetName, illuminationLevel);
         this.producedLight = producedLight;
     }
 
-    public void produceLight(SpaceObject planet) {
-        System.out.println("Yellow Dwarf " + planetName + " produced light on " + planet.planetName);
+    public void produceLight(SpaceObject planet, boolean beforeCave) {
+
+        ViewPlanet viewPlanet = spaceObject -> beforeCave ? " with side lights " : " with forward lights ";
+
+        System.out.println("Yellow Dwarf " + planetName + " produced light on " + planet.getPlanetName()
+            + viewPlanet.getPlanetView(this));
         planet.setIlluminationLevel(producedLight);
     }
 
