@@ -2,6 +2,7 @@ package com.company.scanner;
 
 import com.company.collection.comparators.VehicleCapacityComparator;
 import com.company.collection.comparators.VehicleNameComparator;
+import com.company.controller.Validator;
 import com.company.vehicle.Vehicle;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -13,6 +14,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.TreeSet;
 
+/**
+ * Class, controlling parsing
+ */
 public class GsonCollectionParser {
     private FileReader fileReader;
     private FileWriter fileWriter;
@@ -22,15 +26,24 @@ public class GsonCollectionParser {
 
     public void initGsonParser(String fileName) throws Exception {
         File file = new File(fileName);
+        try {
 
-        if (!file.exists()) {
-            throw new Exception("File doesn't exist!");
+            if (!file.exists()) {
+                throw new Exception("File doesn't exist!");
+            }
+            if (!file.canRead()) {
+                throw new Exception("File doesn't provide reading writes!");
+            }
+            if (!file.canWrite()) {
+                throw new Exception("File doesn't provide writing writes!");
+            }
         }
-        if (!file.canRead()) {
-            throw new Exception("File doesn't provide reading writes!");
+        catch (Exception e) {
+            System.out.println("Error in work with file");
+            System.out.println(e.getMessage());
+            System.exit(1);
         }
-
-        this.fileWriter = new FileWriter(file);
+        this.fileWriter = new FileWriter(file, true);
         this.fileReader = new FileReader(file);
         this.gson = new Gson();
     }
@@ -52,10 +65,18 @@ public class GsonCollectionParser {
 
         try {
             JsonReader reader = new JsonReader(this.fileReader);
+            if (!reader.hasNext()) {
+                return treeSet;
+            }
             Vehicle[] vehicles = this.gson.fromJson(reader, Vehicle[].class);
+            for (Vehicle vehicle1: vehicles) {
+                if (!Validator.isValidVehicle(vehicle1)) {
+                    System.out.println("Bad data in file");
+                    throw new Exception("Bad data");
+                }
+            }
             treeSet.addAll(Arrays.asList(vehicles));
         } catch (Exception e) {
-            System.out.println("error:.., " + e);
             System.out.println("Error in getting files");
         }
         return treeSet;

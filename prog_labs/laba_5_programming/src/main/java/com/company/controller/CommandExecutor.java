@@ -7,7 +7,11 @@ import com.company.scanner.InputSource;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Class that executes all commands
+ */
 public class CommandExecutor {
     private VehicleService vehicleService;
     private InputParser inputParser;
@@ -28,7 +32,7 @@ public class CommandExecutor {
     }
 
     public void showCommand() {
-        ArrayList<String> arrayList = this.vehicleService.getCollectionToString();
+        List<String> arrayList = this.vehicleService.getCollectionToString();
         arrayList.forEach(System.out::println);
     }
 
@@ -96,14 +100,18 @@ public class CommandExecutor {
         this.vehicleService.printWheels();
     }
 
-    public void executeCommand(String filename) throws Exception {
+    public void executeCommand(String filename) {
         try {
             InputParser inputParser = new InputParser(InputSource.FILE, filename);
             CommandReader commandReader = new CommandReader(inputParser);
+            if (!CallStackController.addCall(filename)) {
+                return;
+            }
             commandReader.startService();
         }
         catch (Exception e) {
-            System.out.println("Bad file for script: " + e.getMessage());
+            System.out.println("Bad file for script");
+            System.out.println(e.getMessage());
         }
     }
 

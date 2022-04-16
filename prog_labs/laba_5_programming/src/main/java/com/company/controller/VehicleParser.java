@@ -6,6 +6,9 @@ import com.company.vehicle.Coordinates;
 import com.company.vehicle.Vehicle;
 import com.company.vehicle.VehicleType;
 
+/**
+ * Parser of user input with all checks
+ */
 public class VehicleParser {
     private final InputParser inputParser;
 
@@ -25,7 +28,8 @@ public class VehicleParser {
             return new Vehicle(name, coordinates, enginePower,
                     numberOfWheels, capacity, vehicleType);
         } catch (Exception e) {
-            System.out.println("Error in user input!");
+            System.out.println("Critical Error in user input!");
+            System.exit(1);
             return null;
         }
     }
@@ -36,7 +40,7 @@ public class VehicleParser {
             try {
                 System.out.println("Enter name of the vehicle");
                 name = this.inputParser.getScanner().nextLine();
-                if (name.equals("")) {
+                if (name.isEmpty() || name.trim().isEmpty()) {
                     System.out.println("Incorrect");
                     continue;
                 }
@@ -112,13 +116,16 @@ public class VehicleParser {
 
     private VehicleType parseVehicleType() {
         String vehicleType;
+        System.out.println("Enter vehicle type, you have such options: ");
+        for (VehicleType type : VehicleType.values()) {
+            System.out.println(type);
+        }
         while (true) {
             try {
-                System.out.println("Enter vehicle type, you have such options: ");
-                for (VehicleType type : VehicleType.values()) {
-                    System.out.println(type);
-                }
                 vehicleType = this.inputParser.getScanner().nextLine();
+                if (vehicleType.isEmpty()) {
+                    continue;
+                }
                 for (VehicleType type : VehicleType.values()) {
                     if (vehicleType.equals(type.toString())) {
                         return type;

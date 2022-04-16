@@ -19,13 +19,23 @@ public class CommandReader {
 
     public void startService() throws Exception {
         Boolean shouldBreak = false;
-        String command;
+        String command = null;
+        System.out.println("Input a command!");
         while (true) {
             if (!inputParser.getScanner().hasNext()
                     && inputParser.getInputSource().equals(InputSource.FILE)) {
                 break;
             }
-            command = inputParser.getScanner().nextLine();
+            try {
+                command = inputParser.getScanner().nextLine();
+            }
+            catch (Exception e) {
+                System.out.println("Critical error in user input!");
+                System.exit(1);
+            }
+            if (command.isEmpty()) {
+                continue;
+            }
             String[] parsedCommand = command.split(" ");
             switch (parsedCommand[0]) {
                 case ("help"):
@@ -48,6 +58,7 @@ public class CommandReader {
                     break;
                 case ("exit"):
                     shouldBreak = true;
+                    System.exit(0);
                     break;
                 case ("remove_greater"):
                     this.commandExecutor.removeGreaterCommand();

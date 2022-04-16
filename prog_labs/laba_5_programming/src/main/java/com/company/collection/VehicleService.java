@@ -9,7 +9,11 @@ import com.company.vehicle.Vehicle;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
+/**
+ * Main class, operating with collection
+ */
 public class VehicleService {
     private TreeSet<Vehicle> treeSet;
     private final java.time.LocalDateTime creationDate;
@@ -22,12 +26,14 @@ public class VehicleService {
         this.creationDate = java.time.LocalDateTime.now();
     }
 
-    public ArrayList<String> getCollectionToString() {
-        ArrayList<String> arrayList = new ArrayList<>();
-        this.treeSet.stream()
+    public void addAllTree(TreeSet<Vehicle> treeSet) {
+        this.treeSet.addAll(treeSet);
+    }
+
+    public List<String> getCollectionToString() {
+        return this.treeSet.stream()
                 .map(Object::toString)
-                .forEach(arrayList::add);
-        return arrayList;
+                .collect(Collectors.toList());
     }
 
     public void addVehicle(InputParser inputParser) {

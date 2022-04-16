@@ -4,6 +4,9 @@ import com.sun.istack.internal.NotNull;
 
 import java.util.Date;
 
+/**
+ * Main class, that we are operating with
+ */
 public class Vehicle {
     private long id;
     @NotNull
@@ -17,6 +20,9 @@ public class Vehicle {
     private Long capacity;
     private VehicleType type;
 
+    public VehicleType getType() {
+        return type;
+    }
 
     public String getName() {
         return name;
