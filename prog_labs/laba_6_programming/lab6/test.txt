@@ -1,0 +1,11 @@
+add
+3
+4
+-12
+1
+q
+5
+1 2
+qqq
+BICYCLE
+show

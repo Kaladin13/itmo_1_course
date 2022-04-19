@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3cf798d0-6200-44c7-831c-f6aa28ea9b47" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/command/ServerAnswerDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/controller/ConsoleExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/scanner/CommandDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/sockets/SocketClientHandling.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../lab6/client_side/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../lab6/client_side/src/main/java/com/company/controller/ClientExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../lab6/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server_side/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server_side/.idea/libraries/Maven__groupId_laba_5_programming_1_0_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server_side/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server_side/src/main/java/com/company/controller/ServerExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../sockets_test/.idea/libraries/lab5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/doc/com/company/controller/CommandExecutor.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/doc/com/company/controller/CommandExecutor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/laba_5_programming.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/laba_5_programming.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/out/artifacts/laba_5_programming_jar/laba_5_programming.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/out/artifacts/laba_5_programming_jar/laba_5_programming.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/collection/VehicleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/collection/VehicleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/controller/CommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/controller/CommandExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/controller/CommandReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/controller/CommandReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/controller/VehicleParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/controller/VehicleParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/scanner/InputParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/scanner/InputParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/scanner/InputSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/scanner/InputSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/vehicle/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/vehicle/Vehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/collection/VehicleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/collection/VehicleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/controller/CommandExecutor.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/controller/CommandExecutor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/controller/CommandReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/controller/CommandReader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/scanner/InputParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/scanner/InputParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/scanner/InputSource.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/scanner/InputSource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/vehicle/Vehicle.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/target/classes/com/company/vehicle/Vehicle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server_side/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../server_side/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server_side/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../server_side/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server_side/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../server_side/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server_side/server_side.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../server_side/server_side.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server_side/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server_side/src/main/java/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server_side/src/com/company/command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/command/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server_side/src/com/company/command/CommandNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/command/CommandNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server_side/src/com/company/sockets/SocketHandling.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/sockets/SocketHandling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server_side/src/com/company/vehicle/ParsedVehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../laba_5_programming/src/main/java/com/company/vehicle/ParsedVehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sockets_test/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../sockets_test/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sockets_test/out/production/sockets_test/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../sockets_test/out/production/sockets_test/com/company/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sockets_test/out/production/sockets_test/com/company/ServerSide.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../sockets_test/out/production/sockets_test/com/company/ServerSide.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sockets_test/sockets_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../sockets_test/sockets_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sockets_test/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../sockets_test/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sockets_test/src/com/company/ServerSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../sockets_test/src/com/company/ServerSide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sockets_test/src/com/company/com/company/ServerSide.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../sockets_test/src/com/company/com/company/ServerSide.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectId" id="27xhgOPFt4PxxeEcOe5sXnBqAfM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="company" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../lab6" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../../lab6/client_side/src/main/java" />
+      <recent name="$PROJECT_DIR$/../../lab6" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="client_side" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="laba_5_programming" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="laba_5_programming" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3cf798d0-6200-44c7-831c-f6aa28ea9b47" name="Changes" comment="" />
+      <created>1650267756690</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1650267756690</updated>
+      <workItem from="1650267758080" duration="49000" />
+      <workItem from="1650267822698" duration="402000" />
+      <workItem from="1650268256868" duration="2046000" />
+      <workItem from="1650274361369" duration="294000" />
+      <workItem from="1650274679400" duration="2929000" />
+      <workItem from="1650291047298" duration="62000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

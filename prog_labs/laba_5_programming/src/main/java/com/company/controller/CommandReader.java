@@ -1,33 +1,37 @@
 package com.company.controller;
 
 import com.company.collection.HistoryStack;
+import com.company.scanner.CommandDTO;
 import com.company.scanner.InputParser;
 import com.company.scanner.InputSource;
-
-import java.util.ArrayList;
 
 public class CommandReader {
     private CommandExecutor commandExecutor;
     private InputParser inputParser;
     private HistoryStack historyStack;
 
-    public CommandReader(InputParser inputParser) {
+    public CommandReader(InputParser inputParser, CommandExecutor commandExecutor) {
         this.historyStack = new HistoryStack();
-        this.commandExecutor = new CommandExecutor(inputParser);
+        this.commandExecutor = commandExecutor;
         this.inputParser = inputParser;
     }
 
-    public void startService() throws Exception {
+    public void startService() {
         Boolean shouldBreak = false;
+        CommandDTO commandDTO;
         String command = null;
+        Object argument = null;
         System.out.println("Input a command!");
         while (true) {
-            if (!inputParser.getScanner().hasNext()
-                    && inputParser.getInputSource().equals(InputSource.FILE)) {
+            if (inputParser.getInputSource().equals(InputSource.FILE)
+                    && !inputParser.getScanner().hasNext()) {
                 break;
             }
             try {
-                command = inputParser.getScanner().nextLine();
+//                command = inputParser.getScanner().nextLine();
+                commandDTO = inputParser.getCommand();
+                command = commandDTO.getCommandName();
+                argument = commandDTO.getCommandArgument();
             }
             catch (Exception e) {
                 System.out.println("Critical error in user input!");
@@ -36,8 +40,7 @@ public class CommandReader {
             if (command.isEmpty()) {
                 continue;
             }
-            String[] parsedCommand = command.split(" ");
-            switch (parsedCommand[0]) {
+            switch (command) {
                 case ("help"):
                     this.commandExecutor.helpCommand();
                     break;
@@ -48,44 +51,40 @@ public class CommandReader {
                     this.commandExecutor.showCommand();
                     break;
                 case ("add"):
-                    this.commandExecutor.addCommand();
+                    this.commandExecutor.addCommand(argument);
                     break;
                 case ("clear"):
                     this.commandExecutor.clearCommand();
                     break;
-                case ("save"):
-                    this.commandExecutor.saveCommand();
-                    break;
                 case ("exit"):
-                    shouldBreak = true;
-                    System.exit(0);
+                    this.commandExecutor.exitCommand();
                     break;
                 case ("remove_greater"):
-                    this.commandExecutor.removeGreaterCommand();
+                    this.commandExecutor.removeGreaterCommand(argument);
                     break;
                 case ("remove_lower"):
-                    this.commandExecutor.removeLowerCommand();
+                    this.commandExecutor.removeLowerCommand(argument);
                     break;
                 case ("history"):
                     this.historyStack.show();
                     break;
                 case ("print_field_descending_number_of_wheels"):
-                    this.commandExecutor.wheelsOrder();
+                    this.commandExecutor.wheelsOrderCommand();
                     break;
                 case ("update"):
-                    this.commandExecutor.updateCommand(parsedCommand[1]);
+                    this.commandExecutor.updateCommand(argument);
                     break;
                 case ("remove_by_id"):
-                    this.commandExecutor.removeCommand(parsedCommand[1]);
+                    this.commandExecutor.removeCommand(argument);
                     break;
                 case ("execute_script"):
-                    this.commandExecutor.executeCommand(parsedCommand[1]);
+                    this.commandExecutor.executeCommand(argument);
                     break;
                 case ("count_greater_than_engine_power"):
-                    this.commandExecutor.greaterPowerCommand(parsedCommand[1]);
+                    this.commandExecutor.greaterPowerCommand(argument);
                     break;
                 case ("filter_greater_than_capacity"):
-                    this.commandExecutor.greaterCapacity(parsedCommand[1]);
+                    this.commandExecutor.greaterCapacityCommand(argument);
                     break;
                 default:
                     System.out.println("No such command available!");
@@ -94,7 +93,7 @@ public class CommandReader {
             if (shouldBreak) {
                 break;
             }
-            this.historyStack.add(parsedCommand[0]);
+            this.historyStack.add(command);
         }
 
     }

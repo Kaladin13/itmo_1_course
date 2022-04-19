@@ -3,6 +3,7 @@ package com.company.controller;
 import com.company.scanner.InputParser;
 import com.company.scanner.InputSource;
 import com.company.vehicle.Coordinates;
+import com.company.vehicle.ParsedVehicle;
 import com.company.vehicle.Vehicle;
 import com.company.vehicle.VehicleType;
 
@@ -27,6 +28,23 @@ public class VehicleParser {
 
             return new Vehicle(name, coordinates, enginePower,
                     numberOfWheels, capacity, vehicleType);
+        } catch (Exception e) {
+            System.out.println("Critical Error in user input!");
+            System.exit(1);
+            return null;
+        }
+    }
+
+    public ParsedVehicle parseParsedVehicle() {
+        try {
+            String name = this.parseName();
+            Long enginePower = this.parseEnginePower();
+            Long capacity = this.parseCapacity();
+            int numberOfWheels = this.parseNumberOfWheels();
+            Coordinates coordinates = this.parseCoordinates();
+            VehicleType vehicleType = this.parseVehicleType();
+
+            return new ParsedVehicle(name, enginePower, capacity, numberOfWheels, coordinates, vehicleType);
         } catch (Exception e) {
             System.out.println("Critical Error in user input!");
             System.exit(1);

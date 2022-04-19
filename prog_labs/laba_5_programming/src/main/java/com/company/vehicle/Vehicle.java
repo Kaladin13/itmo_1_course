@@ -83,4 +83,18 @@ public class Vehicle {
         this.creationDate = java.time.LocalDateTime.now();
 
     }
+
+    public Vehicle(ParsedVehicle vehicle1) {
+        this.name = vehicle1.getName();
+        this.coordinates = vehicle1.getCoordinates();
+        this.enginePower = vehicle1.getEnginePower();
+        this.numberOfWheels = vehicle1.getNumberOfWheels();
+        this.capacity = vehicle1.getCapacity();
+        this.type = vehicle1.getVehicleType();
+
+        currentId++;
+        this.id = currentId;
+
+        this.creationDate = java.time.LocalDateTime.now();
+    }
 }

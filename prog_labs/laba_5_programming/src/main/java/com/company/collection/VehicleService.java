@@ -5,6 +5,7 @@ import com.company.collection.comparators.VehicleNameComparator;
 import com.company.controller.VehicleParser;
 import com.company.scanner.GsonParserSingleton;
 import com.company.scanner.InputParser;
+import com.company.vehicle.ParsedVehicle;
 import com.company.vehicle.Vehicle;
 
 import java.time.LocalDateTime;
@@ -30,10 +31,10 @@ public class VehicleService {
         this.treeSet.addAll(treeSet);
     }
 
-    public List<String> getCollectionToString() {
+    public ArrayDeque<String> getCollectionToString() {
         return this.treeSet.stream()
                 .map(Object::toString)
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(ArrayDeque::new));
     }
 
     public void addVehicle(InputParser inputParser) {
@@ -48,6 +49,11 @@ public class VehicleService {
         }
     }
 
+    public void addVehicle(ParsedVehicle parsedVehicle) {
+        Vehicle vehicle = new Vehicle(parsedVehicle);
+        treeSet.add(vehicle);
+    }
+
     public void updateVehicle(Long id, InputParser inputParser) {
         try {
             VehicleParser vehicleParser = new VehicleParser(inputParser);
@@ -55,18 +61,7 @@ public class VehicleService {
             if (vehicle == null) {
                 return;
             }
-            Vehicle.decreaseId();
-            vehicle.setId(id);
-
-            for (Vehicle vehicle1 : this.treeSet) {
-
-                if (vehicle1.getId().equals(id)) {
-                    this.treeSet.remove(vehicle1);
-                    this.treeSet.add(vehicle);
-                    return;
-                }
-
-            }
+            updateVehicleById(id, vehicle);
 
             System.out.println("Id is not present in collection");
 
@@ -74,18 +69,41 @@ public class VehicleService {
         }
     }
 
-    public void removeVehicle(Long id) {
+    public boolean updateVehicle(Long id, ParsedVehicle parsedVehicle) {
+        Vehicle vehicle = new Vehicle(parsedVehicle);
+        return updateVehicleById(id, vehicle);
+    }
+
+    private boolean updateVehicleById(Long id, Vehicle vehicle) {
+        Vehicle.decreaseId();
+        vehicle.setId(id);
+
+        for (Vehicle vehicle1 : this.treeSet) {
+
+            if (vehicle1.getId().equals(id)) {
+                this.treeSet.remove(vehicle1);
+                this.treeSet.add(vehicle);
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public boolean removeVehicle(Long id) {
         try {
             for (Vehicle vehicle1 : this.treeSet) {
 
                 if (vehicle1.getId().equals(id)) {
                     this.treeSet.remove(vehicle1);
-                    return;
+                    return true;
                 }
 
             }
             System.out.println("Id is not present in collection");
+            return false;
         } catch (Exception ignored) {
+            return false;
         }
     }
 
@@ -123,7 +141,18 @@ public class VehicleService {
 
         } catch (Exception ignored) {
         }
+    }
 
+    public void removeGreaterThen(ParsedVehicle parsedVehicle) {
+        Vehicle vehicle = new Vehicle(parsedVehicle);
+        Vehicle.decreaseId();
+
+        Vehicle vehicle1 = treeSet.higher(vehicle);
+
+        while (vehicle1 != null) {
+            treeSet.remove(vehicle1);
+            vehicle1 = this.treeSet.higher(vehicle);
+        }
     }
 
     public void removeLowerThen(InputParser inputParser) {
@@ -146,7 +175,19 @@ public class VehicleService {
         }
     }
 
-    public void countPower(Long power) {
+    public void removeLowerThen(ParsedVehicle parsedVehicle) {
+        Vehicle vehicle = new Vehicle(parsedVehicle);
+        Vehicle.decreaseId();
+
+        Vehicle vehicle1 = this.treeSet.lower(vehicle);
+
+        while (vehicle1 != null) {
+            treeSet.remove(vehicle1);
+            vehicle1 = this.treeSet.lower(vehicle);
+        }
+    }
+
+    public int countPower(Long power) {
 
         int counter = 0;
 
@@ -155,29 +196,27 @@ public class VehicleService {
                 counter++;
             }
         }
-        System.out.println("Number of elements with greater engine power: " + counter);
+        return counter;
     }
 
-    public void countCapacity(Long capacity) {
-
+    public ArrayDeque<String> countCapacity(Long capacity) {
+        ArrayDeque<String> vehicles = new ArrayDeque<>();
         for (Vehicle vehicle1 : this.treeSet) {
             if (vehicle1.getCapacity() > capacity) {
-                System.out.println(vehicle1);
+                vehicles.addLast(vehicle1.toString());
             }
         }
-
+        return vehicles;
     }
 
-    public void printWheels() {
-        ArrayList<Integer> arrayList = new ArrayList<>();
+    public ArrayDeque<String> printWheels() {
+        ArrayDeque<String> arrayList = new ArrayDeque<>();
 
         for (Vehicle vehicle1 : this.treeSet) {
-            arrayList.add(vehicle1.getNumberOfWheels());
+            arrayList.addLast(String.valueOf(vehicle1.getNumberOfWheels()));
         }
-        arrayList.sort(Collections.reverseOrder());
 
-        for (Integer i : arrayList) {
-            System.out.println(i);
-        }
+//        arrayList.sort(Collections.reverseOrder());
+        return arrayList;
     }
 }

@@ -1,11 +1,14 @@
 package com.company;
 
-import com.company.vehicle.Coordinates;
+import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+import java.util.ArrayDeque;
+import java.util.List;
 
 public class Main {
 
@@ -13,13 +16,23 @@ public class Main {
 	    String host = "127.0.0.1";
         int port = 8239;
         try {
-            Socket socket = new Socket(host, port);
-            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+            Socket socket = new Socket();
+            System.out.println("no connection");
+            socket.connect(new InetSocketAddress(host, port));
+//            ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
+//            serverSocketChannel.bind(new InetSocketAddress(host, port));
+//            SocketChannel socketChannel = serverSocketChannel.accept();
+//            socketChannel.write()
+//            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+//            ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
 
             Message message = new Message("default mem", 1488L);
-            outputStream.writeObject(12);
+            ByteOutputStream b = new ByteOutputStream();
+            ObjectOutputStream s = new ObjectOutputStream(b);
+//            outputStream.writeObject(message);
+        while (true) {
 
+        }
         }
         catch (Exception e) {
             System.out.println(e);

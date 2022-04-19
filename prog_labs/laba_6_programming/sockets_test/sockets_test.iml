@@ -8,15 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sockets_test" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES />
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/../../laba_5_programming/src/main/java" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module" module-name="laba_5_programming" />
+    <orderEntry type="library" name="lab5" level="project" />
   </component>
 </module>

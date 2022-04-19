@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="server_side" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="laba_5_programming" target="8" />
+      <module name="server_side" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
