@@ -1,8 +1,9 @@
 package com.company.collection;
 
 import java.util.ArrayDeque;
+import java.util.Iterator;
 
-public class HistoryStack {
+public class HistoryStack implements Iterable<String> {
     private ArrayDeque<String> arrayList;
 
     public HistoryStack() {
@@ -20,4 +21,14 @@ public class HistoryStack {
         return arrayList;
     }
 
+    public static void main(String[] args) {
+        for (String s : new HistoryStack()) {
+
+        }
+    }
+
+    @Override
+    public Iterator iterator() {
+        return arrayList.iterator();
+    }
 }
