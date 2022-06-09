@@ -3,7 +3,7 @@ package com.company.collection;
 import java.util.ArrayDeque;
 import java.util.Iterator;
 
-public class HistoryStack implements Iterable<String> {
+public class HistoryStack {
     private ArrayDeque<String> arrayList;
 
     public HistoryStack() {
@@ -11,7 +11,7 @@ public class HistoryStack implements Iterable<String> {
     }
 
     public void add(String s) {
-        if (arrayList.size() >=12) {
+        if (arrayList.size() >= 12) {
             arrayList.removeFirst();
         }
         arrayList.add(s);
@@ -21,14 +21,4 @@ public class HistoryStack implements Iterable<String> {
         return arrayList;
     }
 
-    public static void main(String[] args) {
-        for (String s : new HistoryStack()) {
-
-        }
-    }
-
-    @Override
-    public Iterator iterator() {
-        return arrayList.iterator();
-    }
 }

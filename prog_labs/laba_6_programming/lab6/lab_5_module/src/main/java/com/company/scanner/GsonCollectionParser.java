@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
@@ -50,7 +51,7 @@ public class GsonCollectionParser {
         this.gson = new Gson();
     }
 
-    public void storeCollection(TreeSet<Vehicle> treeSet) {
+    public void storeCollection(SortedSet<Vehicle> treeSet) {
         try {
             this.fileWriter = new FileWriter(file, false);
             this.gson.toJson(treeSet, this.fileWriter);

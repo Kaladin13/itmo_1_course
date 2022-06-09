@@ -2,32 +2,36 @@ package com.company.collection;
 
 import com.company.collection.comparators.VehicleCapacityComparator;
 import com.company.collection.comparators.VehicleNameComparator;
+import com.company.command.UserDTO;
 import com.company.controller.VehicleParser;
+import com.company.controller.dao.UserDAO;
+import com.company.controller.dao.VehicleSQLService;
 import com.company.scanner.GsonParserSingleton;
 import com.company.scanner.InputParser;
 import com.company.vehicle.ParsedVehicle;
 import com.company.vehicle.Vehicle;
 
 import java.time.LocalDateTime;
-import java.util.ArrayDeque;
-import java.util.Comparator;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * Main class, operating with collection
  */
 public class VehicleService {
-    private TreeSet<Vehicle> treeSet;
+    private SortedSet<Vehicle> treeSet;
     private HistoryStack historyStack;
+    private VehicleSQLService sqlService;
     private final LocalDateTime creationDate;
 
 
     public VehicleService() {
         Comparator<Vehicle> comparator = new VehicleNameComparator().
                 thenComparing(new VehicleCapacityComparator());
-        this.treeSet = new TreeSet<>(comparator);
+        this.treeSet = Collections.synchronizedSortedSet(new TreeSet<>(comparator));
+//        this.treeSet = new TreeSet<>(comparator);
         this.historyStack = new HistoryStack();
+        this.sqlService = new VehicleSQLService();
         this.creationDate = LocalDateTime.now();
     }
 
@@ -55,13 +59,15 @@ public class VehicleService {
                 return;
             }
             treeSet.add(vehicle);
+            sqlService.saveVehicle(vehicle);
         } catch (Exception ignored) {
         }
     }
 
     public void addVehicle(ParsedVehicle parsedVehicle) {
         Vehicle vehicle = new Vehicle(parsedVehicle);
-        treeSet.add(vehicle);
+        sqlService.saveVehicle(vehicle);
+        treeSet.add(sqlService.getVehicle(vehicle));
     }
 
     public void updateVehicle(Long id, InputParser inputParser) {
@@ -72,9 +78,6 @@ public class VehicleService {
                 return;
             }
             updateVehicleById(id, vehicle);
-
-            System.out.println("Id is not present in collection");
-
         } catch (Exception ignored) {
         }
     }
@@ -85,28 +88,35 @@ public class VehicleService {
     }
 
     private boolean updateVehicleById(Long id, Vehicle vehicle) {
-        Vehicle.decreaseId();
         vehicle.setId(id);
-
         for (Vehicle vehicle1 : this.treeSet) {
 
             if (vehicle1.getId().equals(id)) {
-                this.treeSet.remove(vehicle1);
-                this.treeSet.add(vehicle);
-                return true;
+                if (vehicle1.getCreatorId().equals(vehicle.getCreatorId())) {
+                    this.treeSet.remove(vehicle1);
+                    sqlService.updateVehicleWithId(vehicle, id);
+                    this.treeSet.add(sqlService.getVehicle(vehicle));
+                    return true;
+                }
             }
 
         }
         return false;
     }
 
-    public boolean removeVehicle(Long id) {
+    public boolean removeVehicle(Long id, UserDTO currentUser) {
         try {
-            for (Vehicle vehicle1 : this.treeSet) {
+            UserDAO userDAO = new UserDAO();
 
-                if (vehicle1.getId().equals(id)) {
-                    this.treeSet.remove(vehicle1);
-                    return true;
+            for (Vehicle vehicle : this.treeSet) {
+
+                if (vehicle.getId().equals(id)) {
+                    vehicle.setCreatorId(userDAO.get(currentUser).getId());
+                    if (vehicle.getCreatorId().equals(currentUser.getId())) {
+                        this.treeSet.remove(vehicle);
+                        sqlService.deleteVehicle(vehicle);
+                        return true;
+                    }
                 }
 
             }
@@ -125,8 +135,18 @@ public class VehicleService {
         return creationDate;
     }
 
-    public void clearCollection() {
-        this.treeSet.clear();
+    public int clearCollection(UserDTO currentUser) {
+        UserDAO userDAO = new UserDAO();
+        currentUser = userDAO.get(currentUser);
+        int count = 0;
+        for (Vehicle vehicle : treeSet) {
+            if (vehicle.getCreatorId().equals(currentUser.getId())) {
+                treeSet.remove(vehicle);
+                sqlService.deleteVehicle(vehicle);
+                count++;
+            }
+        }
+        return count;
     }
 
     public void saveCollection() {
@@ -141,7 +161,6 @@ public class VehicleService {
             if (vehicle == null) {
                 return;
             }
-            Vehicle.decreaseId();
 
             this.treeSet = this.treeSet.stream()
                     .filter(vehicle2 -> new VehicleNameComparator().compareBool(vehicle2, vehicle))
@@ -153,15 +172,19 @@ public class VehicleService {
         }
     }
 
-    public void removeGreaterThen(ParsedVehicle parsedVehicle) {
+    public int removeGreaterThen(ParsedVehicle parsedVehicle) {
         Vehicle vehicle = new Vehicle(parsedVehicle);
-        Vehicle.decreaseId();
-
-        this.treeSet = this.treeSet.stream()
-                .filter(vehicle2 -> new VehicleNameComparator().compareBool(vehicle2, vehicle))
-                .collect(Collectors.toCollection(() ->
-                        new TreeSet<>(new VehicleNameComparator().
-                                thenComparing(new VehicleCapacityComparator()))));
+        int count = 0;
+        for (Vehicle vehicle1 : treeSet) {
+            if (vehicle1.getEnginePower() > vehicle.getEnginePower()) {
+                if (vehicle1.getCreatorId().equals(vehicle.getCreatorId())) {
+                    treeSet.remove(vehicle1);
+                    sqlService.deleteVehicle(vehicle1);
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
     public void removeLowerThen(InputParser inputParser) {
@@ -171,7 +194,6 @@ public class VehicleService {
             if (vehicle == null) {
                 return;
             }
-            Vehicle.decreaseId();
 
             this.treeSet = this.treeSet.stream()
                     .filter(vehicle2 -> !new VehicleNameComparator().compareBool(vehicle2, vehicle))
@@ -183,15 +205,20 @@ public class VehicleService {
         }
     }
 
-    public void removeLowerThen(ParsedVehicle parsedVehicle) {
+    public int removeLowerThen(ParsedVehicle parsedVehicle) {
         Vehicle vehicle = new Vehicle(parsedVehicle);
-        Vehicle.decreaseId();
+        int count = 0;
+        for (Vehicle vehicle1 : treeSet) {
+            if (vehicle1.getCapacity() > vehicle.getCapacity()) {
+                if (vehicle1.getCreatorId().equals(vehicle.getCreatorId())) {
+                    treeSet.remove(vehicle1);
+                    sqlService.deleteVehicle(vehicle1);
+                    count++;
+                }
+            }
+        }
+        return count;
 
-        this.treeSet = this.treeSet.stream()
-                .filter(vehicle2 -> !new VehicleNameComparator().compareBool(vehicle2, vehicle))
-                .collect(Collectors.toCollection(() ->
-                        new TreeSet<>(new VehicleNameComparator().
-                                thenComparing(new VehicleCapacityComparator()))));
     }
 
     public int countPower(Long power) {
@@ -221,5 +248,11 @@ public class VehicleService {
 
 //        arrayList.sort(Collections.reverseOrder());
         return arrayList;
+    }
+
+    public ParsedVehicle setSQLUser(UserDTO userDTO, ParsedVehicle parsedVehicle) {
+        UserDAO userDAO = new UserDAO();
+        parsedVehicle.setCreatorId(userDAO.get(userDTO).getId());
+        return parsedVehicle;
     }
 }

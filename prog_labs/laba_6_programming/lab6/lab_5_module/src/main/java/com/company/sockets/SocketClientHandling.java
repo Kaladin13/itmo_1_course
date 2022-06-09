@@ -34,6 +34,10 @@ public class SocketClientHandling {
                 this.outputStream = new ObjectOutputStream(socket.getOutputStream());
                 this.inputStream = new ObjectInputStream(socket.getInputStream());
             }
+            if (!command.getCommandName().equals(CommandNames.auth) &&
+                    !command.getCommandName().equals(CommandNames.register)) {
+                command.setUserDTO(Command.currentAuthorisedUser);
+            }
             this.outputStream.writeObject(command);
         } catch (Exception e) {
             try {

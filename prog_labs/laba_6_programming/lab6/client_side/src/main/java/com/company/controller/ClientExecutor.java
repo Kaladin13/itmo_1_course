@@ -2,9 +2,7 @@ package com.company.controller;
 
 import com.company.collection.VehicleService;
 import com.company.collection.VehicleServiceSingleton;
-import com.company.command.Command;
-import com.company.command.CommandNames;
-import com.company.command.ServerAnswerDTO;
+import com.company.command.*;
 import com.company.scanner.InputParser;
 import com.company.scanner.InputSource;
 import com.company.sockets.SocketClientHandling;
@@ -97,7 +95,7 @@ public class ClientExecutor implements CommandExecutor {
     }
 
     @Override
-    public void clearCommand() {
+    public void clearCommand(Object obj) {
         socketClientHandling.sendCommand(new Command(CommandNames.clear));
         ServerAnswerDTO answerDTO = socketClientHandling.receiveServerAnswer();
         printServerAnswer(answerDTO);
@@ -163,7 +161,7 @@ public class ClientExecutor implements CommandExecutor {
     public void executeCommand(Object obj) {
         InputParser temp = this.inputParser;
         try {
-            String filename = (String)obj;
+            String filename = (String) obj;
             InputParser inputParser = new InputParser(InputSource.FILE, filename);
             this.inputParser = inputParser;
             CommandReader commandReader = new CommandReader(inputParser, this);
@@ -173,8 +171,7 @@ public class ClientExecutor implements CommandExecutor {
             }
             commandReader.startService();
             this.inputParser = temp;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             this.inputParser = temp;
             System.out.println("Bad file for script");
             System.out.println(e.getMessage());
@@ -185,6 +182,33 @@ public class ClientExecutor implements CommandExecutor {
     public void exitCommand() {
         System.out.println("Exiting program");
         System.exit(0);
+    }
+
+    @Override
+    public void registerCommand(Object obj) {
+        try {
+            UserParser userParser = new UserParser();
+            UserDTO userDTO = userParser.getUserData();
+            socketClientHandling.sendCommand(new Command(CommandNames.register, userDTO));
+            ServerAnswerDTO answerDTO = socketClientHandling.receiveServerAnswer();
+            printServerAnswer(answerDTO);
+        } catch (Exception ignored) {
+        }
+    }
+
+    @Override
+    public void authCommand(Object obj) {
+        try {
+            UserParser userParser = new UserParser();
+            UserDTO userDTO = userParser.getUserData();
+            socketClientHandling.sendCommand(new Command(CommandNames.auth, userDTO));
+            ServerAnswerDTO answerDTO = socketClientHandling.receiveServerAnswer();
+            printServerAnswer(answerDTO);
+            if (answerDTO.getAnswer().equals(AuthorisationAnswers.SUCCESS.toString())) {
+                Command.currentAuthorisedUser = userDTO;
+            }
+        }
+        catch (Exception ignored) {}
     }
 
 }

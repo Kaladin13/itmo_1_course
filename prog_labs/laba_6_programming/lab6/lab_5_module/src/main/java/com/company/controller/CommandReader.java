@@ -2,6 +2,8 @@ package com.company.controller;
 
 import com.company.collection.HistoryStack;
 import com.company.collection.VehicleServiceSingleton;
+import com.company.command.Command;
+import com.company.command.CommandNames;
 import com.company.scanner.CommandDTO;
 import com.company.scanner.InputParser;
 import com.company.scanner.InputSource;
@@ -33,17 +35,26 @@ public class CommandReader {
 //                command = inputParser.getScanner().nextLine();
                 commandDTO = inputParser.getCommand();
                 if (commandDTO == null) {
-                    continue;
+                    return;
+//                    continue;
                 }
                 command = commandDTO.getCommandName();
                 argument = commandDTO.getCommandArgument();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println("Critical error in user input!");
                 System.exit(1);
             }
             if (command.isEmpty()) {
                 continue;
+            }
+            if (!this.inputParser.getInputSource().equals(InputSource.NET)
+                    && (!command.equals(CommandNames.register.name()) && !command.equals(CommandNames.auth.name()))) {
+                if (Command.currentAuthorisedUser == null) {
+                    System.out.println("You are not allowed to input commands before authentication");
+                    System.out.println("Try ".concat(CommandNames.register.name())
+                            .concat(" or ").concat(CommandNames.auth.name()));
+                    continue;
+                }
             }
             switch (command) {
                 case ("help"):
@@ -59,7 +70,7 @@ public class CommandReader {
                     this.commandExecutor.addCommand(argument);
                     break;
                 case ("clear"):
-                    this.commandExecutor.clearCommand();
+                    this.commandExecutor.clearCommand(argument);
                     break;
                 case ("exit"):
                     this.commandExecutor.exitCommand();
@@ -90,6 +101,12 @@ public class CommandReader {
                     break;
                 case ("filter_greater_than_capacity"):
                     this.commandExecutor.greaterCapacityCommand(argument);
+                    break;
+                case ("register"):
+                    this.commandExecutor.registerCommand(argument);
+                    break;
+                case ("auth"):
+                    this.commandExecutor.authCommand(argument);
                     break;
                 default:
                     System.out.println("No such command available!");

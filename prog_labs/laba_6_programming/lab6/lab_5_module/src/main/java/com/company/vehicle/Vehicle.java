@@ -2,6 +2,7 @@ package com.company.vehicle;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * Main class, that we are operating with
@@ -15,6 +16,19 @@ public class Vehicle implements Serializable {
     private int numberOfWheels;
     private Long capacity;
     private VehicleType type;
+    private Long creatorId;
+
+    public Vehicle() {
+
+    }
+
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
 
     public VehicleType getType() {
         return type;
@@ -51,6 +65,7 @@ public class Vehicle implements Serializable {
                 ", numberOfWheels=" + numberOfWheels +
                 ", capacity=" + capacity +
                 ", type=" + type +
+                ", created by user with id=" + creatorId +
                 '}';
     }
 
@@ -58,10 +73,8 @@ public class Vehicle implements Serializable {
         return capacity;
     }
 
-    static private long currentId = 0;
-
-    static public void decreaseId() {
-        currentId--;
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 
     public Vehicle(String name, Coordinates coordinates, Long enginePower,
@@ -73,11 +86,12 @@ public class Vehicle implements Serializable {
         this.capacity = capacity;
         this.type = type;
 
-        currentId++;
-        this.id = currentId;
-
         this.creationDate = java.time.LocalDateTime.now();
 
+    }
+
+    public Long getCreatorId() {
+        return creatorId;
     }
 
     public Vehicle(ParsedVehicle vehicle1) {
@@ -87,10 +101,19 @@ public class Vehicle implements Serializable {
         this.numberOfWheels = vehicle1.getNumberOfWheels();
         this.capacity = vehicle1.getCapacity();
         this.type = vehicle1.getVehicleType();
-
-        currentId++;
-        this.id = currentId;
-
         this.creationDate = java.time.LocalDateTime.now();
+        this.creatorId = vehicle1.getCreatorId();
+    }
+
+    public Vehicle(VehicleSQL vehicle1) {
+        this.id = vehicle1.getId();
+        this.name = vehicle1.getName();
+        this.coordinates = new Coordinates(vehicle1.getCoordinates_x(), vehicle1.getCoordinates_y());
+        this.enginePower = vehicle1.getEnginePower();
+        this.numberOfWheels = vehicle1.getNumberOfWheels();
+        this.capacity = vehicle1.getCapacity();
+        this.type = VehicleType.valueOf(vehicle1.getType());
+        this.creationDate = java.time.LocalDateTime.now();
+        this.creatorId = (long) vehicle1.getUserId();
     }
 }

@@ -9,6 +9,11 @@ public class ParsedVehicle implements Serializable {
     int numberOfWheels;
     Coordinates coordinates;
     VehicleType vehicleType;
+    Long creatorId;
+
+    public Long getCreatorId() {
+        return creatorId;
+    }
 
     public String getName() {
         return name;
@@ -34,12 +39,17 @@ public class ParsedVehicle implements Serializable {
         return vehicleType;
     }
 
-    public ParsedVehicle(String name, Long enginePower, Long capacity, int numberOfWheels, Coordinates coordinates, VehicleType vehicleType) {
+    public ParsedVehicle(String name, Long enginePower, Long capacity, int numberOfWheels, Coordinates coordinates, VehicleType vehicleType, Long creatorId) {
         this.name = name;
         this.enginePower = enginePower;
         this.capacity = capacity;
         this.numberOfWheels = numberOfWheels;
         this.coordinates = coordinates;
         this.vehicleType = vehicleType;
+        this.creatorId = creatorId;
+    }
+
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
     }
 }

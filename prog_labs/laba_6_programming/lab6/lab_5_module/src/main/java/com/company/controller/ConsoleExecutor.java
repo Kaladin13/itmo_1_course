@@ -11,7 +11,7 @@ import java.util.ArrayDeque;
 /**
  * Class that executes all commands
  */
-public class ConsoleExecutor implements CommandExecutor {
+public class ConsoleExecutor {
     private VehicleService vehicleService;
     private InputParser inputParser;
 
@@ -60,15 +60,15 @@ public class ConsoleExecutor implements CommandExecutor {
     public void removeCommand(Object obj) {
         try {
             Long castedId = Long.parseLong((String)obj);
-            this.vehicleService.removeVehicle(castedId);
+//            this.vehicleService.removeVehicle(castedId);
         }
         catch (Exception e) {
             System.out.println("Incorrect id");
         }
     }
 
-    public void clearCommand() {
-        this.vehicleService.clearCollection();
+    public void clearCommand(Object obj) {
+//        this.vehicleService.clearCollection();
     }
 
     public void saveCommand() {
@@ -110,21 +110,17 @@ public class ConsoleExecutor implements CommandExecutor {
         arrayDeque.forEach(System.out::println);
     }
 
-    @Override
-    public void historyCommand() {
-
-    }
 
     public void executeCommand(Object obj) {
         try {
             String filename = (String)obj;
             InputParser inputParser = new InputParser(InputSource.FILE, filename);
             ConsoleExecutor consoleExecutor = new ConsoleExecutor(inputParser);
-            CommandReader commandReader = new CommandReader(inputParser, consoleExecutor);
+//            CommandReader commandReader = new CommandReader(inputParser, consoleExecutor);
             if (!CallStackController.addCall(filename)) {
                 return;
             }
-            commandReader.startService();
+//            commandReader.startService();
         }
         catch (Exception e) {
             System.out.println("Bad file for script");
@@ -135,5 +131,6 @@ public class ConsoleExecutor implements CommandExecutor {
     public void exitCommand() {
         System.exit(0);
     }
+
 
 }

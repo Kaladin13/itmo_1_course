@@ -22,6 +22,13 @@ public class SocketHandling {
         System.out.println("Server is up and running on ".concat(String.valueOf(PORT)));
     }
 
+    public SocketHandling(Socket socket) throws IOException {
+        this.socket = socket;
+        this.inputStream = new ObjectInputStream(socket.getInputStream());
+        this.outputStream = new ObjectOutputStream(socket.getOutputStream());
+        System.out.println("Started handling socket on port ".concat(String.valueOf(PORT)));
+    }
+
     public Command receiveCommand() throws IOException {
         try {
 
@@ -34,7 +41,6 @@ public class SocketHandling {
 
             return (Command) inputStream.readObject();
         } catch (Exception e) {
-            // TODO log error here
             socket.close();
             socket = null;
             return null;

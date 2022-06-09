@@ -9,10 +9,26 @@ public class Command implements Serializable {
     private String filename;
     private Long additionalParameter;
     private ParsedVehicle parsedVehicle;
+    private UserDTO userDTO;
+
+    public static UserDTO currentAuthorisedUser;
 
     public Command(CommandNames commandName, String filename) {
         this.commandName = commandName;
         this.filename = filename;
+    }
+
+    public Command(CommandNames commandName, UserDTO userDTO) {
+        this.commandName = commandName;
+        this.userDTO = userDTO;
+    }
+
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
+    }
+
+    public UserDTO getUserDTO() {
+        return userDTO;
     }
 
     public Command(CommandNames commandName, Long additionalParameter, ParsedVehicle parsedVehicle) {

@@ -1,15 +1,11 @@
 package com.company;
 
-import com.opencsv.bean.CsvBindByPosition;
-
 import java.io.Serializable;
 
 public class Message implements Serializable {
 
-    @CsvBindByPosition(position = 0)
     private String message;
 
-    @CsvBindByPosition(position = 1)
     private String number;
 
     public Message(String message, String number) {

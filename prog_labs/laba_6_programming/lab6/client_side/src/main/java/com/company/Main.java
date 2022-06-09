@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.controller.ClientExecutor;
 import com.company.controller.CommandReader;
+import com.company.controller.dao.HibernateSessionFactory;
 import com.company.scanner.InputParser;
 import com.company.scanner.InputSource;
 

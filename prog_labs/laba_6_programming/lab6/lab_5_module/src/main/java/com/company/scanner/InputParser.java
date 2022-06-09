@@ -4,6 +4,7 @@ import com.company.command.Command;
 import com.company.sockets.SocketHandling;
 
 import java.io.File;
+import java.net.Socket;
 import java.util.Scanner;
 
 public class InputParser {
@@ -19,6 +20,14 @@ public class InputParser {
         if (this.inputSource.equals(InputSource.NET)) {
             this.socketHandling = new SocketHandling();
         }
+    }
+
+    public InputParser(InputSource inputSource, Socket socket) throws Exception {
+        this.inputSource = inputSource;
+        if (!this.inputSource.equals(InputSource.NET)) {
+            throw new Exception("Only NET scanner can have socket initialisation");
+        }
+        this.socketHandling = new SocketHandling(socket);
     }
 
     public SocketHandling getSocketHandling() {
@@ -42,21 +51,19 @@ public class InputParser {
 
     public CommandDTO getCommand() {
         if (this.inputSource == InputSource.CONSOLE || this.inputSource == InputSource.FILE) {
-                String command = this.scanner.nextLine();
-                String[] parsedCommand = command.split(" ");
-                if (parsedCommand.length < 2) {
-                    return new CommandDTO(parsedCommand[0], null);
-                }
-                else {
-                    return new CommandDTO(parsedCommand[0], parsedCommand[1]);
-                }
+            String command = this.scanner.nextLine();
+            String[] parsedCommand = command.split(" ");
+            if (parsedCommand.length < 2) {
+                return new CommandDTO(parsedCommand[0], null);
+            } else {
+                return new CommandDTO(parsedCommand[0], parsedCommand[1]);
+            }
         }
         if (this.inputSource == InputSource.NET) {
-            try{
+            try {
                 Command command = this.socketHandling.receiveCommand();
                 return new CommandDTO(command.getCommandName().name(), command);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println("Incorrect data from user, taking down connection");
             }
         }

@@ -1,0 +1,15 @@
+			ORG		0x4E3
+TEST_1:		WORD	0xFFFF
+TEST_2:		WORD	0XF0F0
+ANS:		WORD	0X0F0F
+X1:			WORD	?
+ERROR:		HLT	
+START:		LD 		#0X00
+			ST      X1
+			LD		TEST_1
+			WORD	0x94E4
+			CMP		ANS
+			BNE		ERROR
+			LD		#0X01
+			ST      X1
+			HLT

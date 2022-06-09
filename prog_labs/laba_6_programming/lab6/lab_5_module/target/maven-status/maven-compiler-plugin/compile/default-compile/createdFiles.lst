@@ -1,6 +1,7 @@
 com/company/collection/VehicleServiceSingleton.class
 com/company/collection/comparators/VehicleNameComparator.class
 com/company/collection/HistoryStack.class
+com/company/vehicle/VehicleSQL.class
 com/company/scanner/GsonCollectionParser.class
 com/company/scanner/InputSource.class
 com/company/controller/CommandExecutor.class

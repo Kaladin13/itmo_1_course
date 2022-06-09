@@ -19,8 +19,7 @@ public class Main {
             VehicleServiceSingleton.getVehicleService().addAllTree(GsonParserSingleton.getGsonCollectionParser().getCollection());
             InputParser inputParser = new InputParser(InputSource.CONSOLE);
             ConsoleExecutor consoleExecutor = new ConsoleExecutor(inputParser);
-            CommandReader commandReader = new CommandReader(inputParser, consoleExecutor);
-            commandReader.startService();
+
         }
         catch (Exception ignored) {}
     }

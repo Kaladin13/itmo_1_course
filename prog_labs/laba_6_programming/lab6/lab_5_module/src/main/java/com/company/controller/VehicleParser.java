@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.command.Command;
 import com.company.scanner.InputParser;
 import com.company.vehicle.Coordinates;
 import com.company.vehicle.ParsedVehicle;
@@ -43,7 +44,7 @@ public class VehicleParser {
             Coordinates coordinates = this.parseCoordinates();
             VehicleType vehicleType = this.parseVehicleType();
 
-            return new ParsedVehicle(name, enginePower, capacity, numberOfWheels, coordinates, vehicleType);
+            return new ParsedVehicle(name, enginePower, capacity, numberOfWheels, coordinates, vehicleType, Command.currentAuthorisedUser.getId());
         } catch (Exception e) {
             System.out.println("Critical Error in user input!");
             System.exit(1);

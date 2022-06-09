@@ -7,7 +7,7 @@ public interface CommandExecutor {
     void addCommand(Object obj);
     void updateCommand(Object obj);
     void removeCommand(Object obj);
-    void clearCommand();
+    void clearCommand(Object obj);
     void removeGreaterCommand(Object obj);
     void removeLowerCommand(Object obj);
     void greaterPowerCommand(Object obj);
@@ -16,5 +16,6 @@ public interface CommandExecutor {
     void historyCommand();
     void executeCommand(Object obj);
     void exitCommand();
-
+    void registerCommand(Object obj);
+    void authCommand(Object obj);
 }
